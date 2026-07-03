@@ -1,17 +1,15 @@
-¿Por qué usaste LEFT JOIN para la Consulta 1 y no INNER JOIN? ¿Qué se perdería si usaras INNER JOIN?
-Debemos usar left join ya que debemos primero listar todos los productos, hayan tenido ventas o no, para luego filtrar los que en ventas tengan null. Estos son los que nunca tuvieron ventas.
-No se puede usar inner join sino incluiría solo los productos que tienen ventas.
+¿Cuántas filas devuelve cada consulta y por qué son distintas? Explicá con ejemplos concretos de los datos qué filas se eliminaron con UNION
+La primera consutla retoran  11 filas, la segunda 14 filas.
+Con las union se eleminaron las filas que en todos sus columnas tenian los mismos datpos.
 
-¿Por qué usaste RIGHT JOIN para la Consulta 2? ¿Qué tabla está a la izquierda y cuál a la derecha en tu consulta?
-Use right join ya que debía incluir todas las ventas, tengan un producto existente en la tabla productos o no.
-La tabla de la izquierda es productos y la de la derecha es ventas.
+¿Por qué UNION ALL es más eficiente que UNION? ¿Qué operación adicional realiza UNION internamente que consume más recursos?
+Es mas eficiente porque no tiene que excluir los valores repetidos. Recorrer el resultado para eliminar registros duplicados.
 
+¿En qué casos de negocio usarías cada uno? Dá al menos dos ejemplos reales distintos a los del ejercicio.
+La union la usaria en el caso de querer obtener clientes diferentes de dos sucursales.
+La union all la usaria en el caso de querer listar ventas que se encuentren en diferentes tablas.
 
-¿Qué representan los valores NULL en cada resultado? Explica con un ejemplo concreto de los datos qué significa que venta_id sea NULL en la Consulta 1 y que producto_id de productos sea NULL en la Consulta 2.
-Los valores null en las consultas muestran ausencia de valor. No existe un valor para ese campo para el registro seleccionado.
-En el ejemplo 1 la venta_id es null en los casos en los cuales el articulo ej.: Hub USB-C 7p no tiene ventas registradas en la tabla ventas.
-En el ejemplo 2 la producto_id es null en los casos en los cuales la venta ej.: venta_id 10, producto 999 no tiene producto registrado en la tabla productos. No existe en la tabla productos un producto con el id 999.
+¿Qué pasa si las columnas de ambas consultas no coinciden en número o tipo? ¿Qué error genera SQL?
 
-¿Cuándo usarías FULL OUTER JOIN en un caso real de negocio?  
-Debo usarlo cuando debo mostrar todos los registros de la tabla de la derecha (tengan o no registros en la tabla de la izquierda) y viceversa.
-
+Sql no puede hacer la union y no retorna datos.
+Retorna este error: "Todas las consultas combinadas mediante un operador UNION, INTERSECT o EXCEPT deben tener el mismo número de expresiones en sus listas de destino"
